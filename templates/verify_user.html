@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify User</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .container h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .error-message {
+            color: red;
+            margin-top: 10px;
+        }
+        .success-message { 
+            color: green;
+            margin-top: 10px;
+            margin-bottom: 15px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left; 
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+            font-weight: 600;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        .form-group button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+            width: 100%; 
+        }
+        .form-group button:hover {
+            background-color: #0056b3;
+        }
+        #proceed-auth-container {
+            margin-top: 20px;
+        }
+        #proceed-auth-button {
+            padding: 10px 20px;
+            background-color: #28a745; 
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        #proceed-auth-button:hover {
+            background-color: #1e7e34;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="logo">
+                <img src="/static/logo.png" alt="College Campus Election Logo">
+            </div>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About Us</a></li>
+                <li><a href="/FAQ">FAQs</a></li>
+                <li><a href="/contact">Contact Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Verify User</h1>
+        <form method="POST" action="/verify_user">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="enrollment_number">Enrollment Number:</label>
+                <input type="text" id="enrollment_number" name="enrollment_number" required>
+            </div>
+            {% if message %}
+                {% if show_auth_button %}
+                    <p class="success-message">{{ message }}</p>
+                {% else %}
+                    <p class="error-message">{{ message }}</p>
+                {% endif %}
+            {% endif %}
+            <div class="form-group">
+                <button type="submit">Verify Details</button>
+            </div>
+        </form>
+
+        {% if show_auth_button %}
+        <div id="proceed-auth-container">
+            <a href="/verify" id="proceed-auth-button">Proceed to Authentication</a>
+        </div>
+        {% endif %}
+
+    </div>
+
+    <footer>
+        <p>&copy; 2025 FaceVote - Empowering Democratic Campus Elections</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vote Cast Successfully - FaceVote</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="/static/vote_cast_success.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="logo">
+                <img src="/static/logo.png" alt="College Campus Election Logo">
+            </div>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About Us</a></li>
+                <li><a href="/FAQ">FAQs</a></li>
+                <li><a href="/contact">Contact Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="success-message">
+            <h1>Vote Cast Successfully!</h1>
+            <p>Your vote for <strong>{{ candidate }}</strong> has been recorded.</p>
+            <p>Thank you for participating in the election.</p>
+        </div>
+        <p class="back-link"><a href="/">Go Back to Home</a></p>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 FaceVote - Empowering Democratic Campus Elections</p>
+    </footer>
+</body>
+</html>

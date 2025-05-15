@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cast Your Vote - FaceVote</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="/static/voting.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="logo">
+                <img src="/static/logo.png" alt="College Campus Election Logo">
+            </div>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About Us</a></li>
+                <li><a href="/FAQ">FAQs</a></li>
+                <li><a href="/contact">Contact Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Cast Your Vote</h1>
+        <form action="/cast_vote" method="POST" class="voting-form">
+            <div class="form-group">
+                <label for="candidate">Select Candidate:</label>
+                <select id="candidate" name="candidate">
+                    <option value="candidate1">Candidate A</option>
+                    <option value="candidate2">Candidate B</option>
+                    <option value="candidate3">Candidate C</option>
+                    </select>
+            </div>
+            <button type="submit" class="primary-button">Cast Vote</button>
+        </form>
+        <p class="back-link"><a href="/verify">Go Back to Verification</a></p>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 FaceVote - Empowering Democratic Campus Elections</p>
+    </footer>
+</body>
+</html>

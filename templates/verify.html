@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Your Vote - FaceVote</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="/static/verify.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="logo">
+                <img src="/static/logo.png" alt="College Campus Election Logo">
+            </div>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About Us</a></li>
+                <li><a href="/FAQ">FAQs</a></li>
+                <li><a href="/contact">Contact Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Verify Your Vote</h1>
+        <div id="verification-form">
+            <div class="video-container">
+                <video id="video" width="640" height="480" autoplay></video>
+            </div>
+            <button id="capture" class="primary-button">Capture</button>
+            <canvas id="canvas" style="display: none;"></canvas>
+            <div id="verification-result" class="result-message"></div>
+            <div id="vote-button-container" style="display: none; margin-top: 20px;">
+                <button id="proceed-to-vote" class="primary-button">Proceed to Voting</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 FaceVote - Empowering Democratic Campus Elections</p>
+    </footer>
+    <script>
+        const video = document.getElementById('video');
+        const canvas = document.getElementById('canvas');
+        const captureButton = document.getElementById('capture');
+        const verificationResult = document.getElementById('verification-result');
+        const voteButtonContainer = document.getElementById('vote-button-container');
+        const proceedToVoteButton = document.getElementById('proceed-to-vote');
+
+        let stream;
+
+        function startCamera() {
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(function (newStream) {
+                    stream = newStream;
+                    console.log("Stream object:", stream);
+                    try {
+                        video.srcObject = stream;
+                    } catch (e) {
+                        console.error("Error assigning stream to video:", e);
+                        verificationResult.textContent = 'Error setting up video stream.';
+                    }
+                })
+                .catch(function (error) {
+                    verificationResult.textContent = 'Error accessing camera: ' + error.message;
+                    console.error('Camera error:', error);
+                });
+        }
+
+        function stopCamera() {
+            if (stream) {
+                stream.getTracks().forEach(track => {
+                    track.stop();
+                });
+                video.srcObject = null;
+            }
+        }
+
+        // Start the camera when the page loads
+        startCamera();
+
+        captureButton.addEventListener('click', () => {
+            if (!video.videoWidth || !video.videoHeight) {
+                verificationResult.textContent = 'Camera stream not ready.';
+                return;
+            }
+
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            const context = canvas.getContext('2d');
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+            const imageData = canvas.toDataURL('image/jpeg');
+
+            fetch('/verify_capture', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ image: imageData }) // Removed enrollment_number
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Response from server:', data);
+                    verificationResult.textContent = data.message;
+                    if (data.message.startsWith('Face verified')) {
+                        voteButtonContainer.style.display = 'block';
+                    } else {
+                        voteButtonContainer.style.display = 'none';
+                    }
+                })
+                .catch(error => {
+                    verificationResult.textContent = 'Error during verification.';
+                    console.error('Verification error:', error);
+                    voteButtonContainer.style.display = 'none';
+                });
+        });
+
+        proceedToVoteButton.addEventListener('click', () => {
+            window.location.href = '/vote';
+            stopCamera();
+        });
+
+        window.addEventListener('beforeunload', stopCamera);
+    </script>
+</body>
+
+</html>

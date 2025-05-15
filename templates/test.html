@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Camera Test</title>
+</head>
+<body>
+    <h1>Camera Test</h1>
+    <video id="video" width="640" height="480" autoplay></video>
+    <div id="error"></div>
+
+    <script>
+        const video = document.getElementById('video');
+        const errorDiv = document.getElementById('error');
+
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(stream => {
+                video.srcObject = stream;
+            })
+            .catch(err => {
+                errorDiv.textContent = 'Error accessing camera: ' + err.message;
+                console.error('Camera error:', err);
+            });
+
+        window.addEventListener('beforeunload', () => {
+            if (video.srcObject) {
+                video.srcObject.getVideoTracks().forEach(track => track.stop());
+            }
+        });
+    </script>
+</body>
+</html>
