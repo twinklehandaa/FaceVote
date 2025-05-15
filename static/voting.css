@@ -1,0 +1,42 @@
+/* static/voting.css */
+
+.voting-form {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #333;
+}
+
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.back-link {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.back-link a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.back-link a:hover {
+    text-decoration: underline;
+}
