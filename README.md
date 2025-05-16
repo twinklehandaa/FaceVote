@@ -10,10 +10,10 @@ The primary objective of FaceVote is to develop a reliable, secure, and efficien
 
 ## System Implementation: 
 ### Backend: 
-* A server-side application built using a framework called Flask  
+* A server-side application built using a framework called Flask.
 * A database management system (DBMS) such as sqlite3 for storing voter data, election 
 information, and vote records. 
-* A facial recognition library, OpenCV (Open Source Computer Vision Library) for face 
+* A machine learning and neural network library, Tensorflow and Keras for face 
 detection and feature extraction. 
 ### Frontend: 
 * A web application developed using HTML, CSS, and JavaScript. 
