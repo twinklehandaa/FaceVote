@@ -3,7 +3,6 @@ import numpy as np
 from flask import Flask, render_template, request, jsonify, redirect, url_for, session
 from werkzeug.utils import secure_filename
 from PIL import Image
-import cv2
 import base64
 import io
 import tensorflow as tf
