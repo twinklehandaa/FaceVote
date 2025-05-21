@@ -23,4 +23,15 @@ backend.
 * Implementation of face detection algorithms to locate faces in images/video frames. 
 * Implementation of feature extraction techniques to obtain unique facial features. 
 * Implementation of face comparison algorithms to match captured faces with registered 
-faces. 
+faces.
+
+## Snippets:
+![image](https://github.com/user-attachments/assets/de1383ab-e7fd-40b2-88ef-ad372e5643eb)
+![image](https://github.com/user-attachments/assets/23f424e2-4381-4646-9c6f-8d9b703fdd61)
+![image](https://github.com/user-attachments/assets/c9248599-e173-4252-840c-2771764dc697)
+![image](https://github.com/user-attachments/assets/280775bf-40f4-45bc-85c2-408e9403e773)
+![image](https://github.com/user-attachments/assets/112edabf-01fb-43a3-9c50-f60dac2a271d)
+
+
+
+
